@@ -1,0 +1,41 @@
+.carousel-container {
+    text-align: center;
+  }
+  
+  .slider-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .slider-image {
+    width: 60%;
+    height: auto;
+    max-height: 80vh;
+    margin: 0 auto;
+  }
+  
+  .arrow-button {
+    position: absolute;
+    top: 50%;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    background: grey;
+    
+  }
+  
+  
+  .arrow-button:focus {
+    outline: none;
+  }
+  
+  /* Responsive adjustments for portrait view */
+  @media screen and (orientation: portrait) {
+    
+    .slider-image {
+      width: 100%;
+    }
+  }
+  
