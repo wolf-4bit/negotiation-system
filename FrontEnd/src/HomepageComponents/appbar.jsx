@@ -1,33 +1,35 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import React from 'react';
+import { styled, useMediaQuery } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 const Search = styled('div')(({ theme }) => ({
+  flex: 1,
+  display: 'flex',
+  justifyContent: 'center',
   position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
+    marginLeft: theme.spacing(0),
   },
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
-  position: 'absolute',
+  position: 'relative',
+  marginTop: '0.7rem',
   pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
@@ -36,54 +38,119 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
-  width: '100%',
   '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    padding: theme.spacing(1.5, 2, 1.5, 2),
+    fontSize: '1rem',
     transition: theme.transitions.create('width'),
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '60ch',
     },
   },
 }));
 
+const CustomDrawer = styled(Drawer)(({ theme }) => ({
+  '& .MuiDrawer-paper': {
+    width: '400px', // Set the initial width
+    [theme.breakpoints.down('sm')]: {
+      width: '80%', // Adjust width for smaller screens
+    },
+  },
+  position: 'fixed', // Fixed position to prevent pushing other components
+}));
+
 export default function Navbar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isCartOpen, setCartOpen] = React.useState(false);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleCartClick = () => {
+    setCartOpen(true);
+  };
+
+  const handleCartClose = () => {
+    setCartOpen(false);
+  };
+
+  const isPortrait = useMediaQuery('(orientation: portrait)');
+
+  const drawerWidth = isPortrait ? '40%' : '400px';
+
   return (
-    <Box sx={{ flexGrow: 1, margin: 0, padding: 0}} >
-      <AppBar position="static" sx={{width: '100vw', backgroundColor: "" }} >
+    <div>
+      <AppBar position="static" sx={{backgroundColor:'#663399'}}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             variant="h6"
-            noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{
+              width: '250px',
+              fontSize: '1.5rem',
+              '@media (max-width:600px)': { fontSize: '1rem' },
+            }}
           >
             Negotiation Engine
           </Typography>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search for items and products"
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+
+          <div>
+            <IconButton
+              size="large"
+              color="inherit"
+              onClick={handleMenuOpen}
+              aria-controls="navbar-menu"
+              aria-haspopup="true"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="navbar-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+              <MenuItem onClick={handleMenuClose}>My Orders</MenuItem>
+            </Menu>
+          </div>
+
+          <IconButton size="large" color="inherit" onClick={handleCartClick}>
+            <ShoppingCartIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
-    </Box>
+
+      <CustomDrawer
+        anchor="right"
+        open={isCartOpen}
+        onClose={handleCartClose}
+        variant="temporary"
+        ModalProps={{ keepMounted: true }}
+        PaperProps={{ style: { width: drawerWidth, maxWidth: '400px' } }}
+      >
+        <List>
+          <ListItem>
+            <ListItemText primary="Empty Cart" />
+          </ListItem>
+        </List>
+      </CustomDrawer>
+    </div>
   );
 }

@@ -10,7 +10,7 @@ const AdditionalBar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" sx={{ width: '100vw', height: "30px", margin: 0, padding: 0, backgroundColor: "#0047AB" }}>
+      <AppBar position="static" sx={{ width: '100vw', height: "30px", margin: 0, padding: 0, backgroundColor: "#4B0082" }}>
         <Toolbar sx={{ justifyContent: 'space-between', paddingLeft: '5%', paddingRight: '5%' }}>
           <Typography noWrap sx={{ mt: -4, fontSize: { xs: '8px', sm: '10px', md: '12px', lg: '14px', xl: '16px' }, marginRight: '4px' }}>
             Bestsellers
