@@ -4,25 +4,28 @@
   
   .slider-container {
     position: relative;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
     max-width: 100%;
     overflow: hidden;
   }
   
   .slider-image {
-    width: 60%;
+    border-radius: 1rem;
+    width: 35%;
     height: auto;
-    max-height: 80vh;
+    max-height: 40vh;
     margin: 0 auto;
   }
   
   .arrow-button {
     position: absolute;
-    top: 50%;
+    top: 45%;
     font-size: 2rem;
     color: #fff;
     cursor: pointer;
     border: none;
-    background: grey;
+    background: #4B0082;
     
   }
   

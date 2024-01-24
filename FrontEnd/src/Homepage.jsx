@@ -7,10 +7,12 @@ import ItemCards from "./HomepageComponents/cards";
 const EcommerceHomePage = () => {
   return (
     <>
-      <Navbar></Navbar>
-      <AdditionalBar></AdditionalBar>
-      <Carousel></Carousel>
-      <ItemCards></ItemCards>
+      <div style={{backgroundColor:"#1b1b1b"}}>
+        <Navbar></Navbar>
+        <AdditionalBar></AdditionalBar>
+        <Carousel></Carousel>
+        <ItemCards></ItemCards>
+      </div>
     </>
   );
 };
