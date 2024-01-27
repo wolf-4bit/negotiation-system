@@ -7,7 +7,7 @@ import ItemCards from "./HomepageComponents/cards";
 const EcommerceHomePage = () => {
   return (
     <>
-      <div style={{backgroundColor:"#1b1b1b"}}>
+      <div style={{backgroundColor:"white"}}>
         <Navbar></Navbar>
         <AdditionalBar></AdditionalBar>
         <Carousel></Carousel>

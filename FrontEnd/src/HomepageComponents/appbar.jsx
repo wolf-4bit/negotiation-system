@@ -118,6 +118,7 @@ export default function Navbar() {
               aria-haspopup="true"
             >
               <AccountCircle />
+              <Typography sx={{paddingLeft:"0.5rem"}}>Sign In</Typography>
             </IconButton>
             <Menu
               id="navbar-menu"
@@ -132,8 +133,11 @@ export default function Navbar() {
           </div>
 
           <IconButton size="large" color="inherit" onClick={handleCartClick}>
+            
             <ShoppingCartIcon />
+            <Typography sx={{paddingLeft:"0.5rem"}}>Cart</Typography>
           </IconButton>
+          
         </Toolbar>
       </AppBar>
 

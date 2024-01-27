@@ -1,51 +1,47 @@
 import React from "react";
-import { Card, CardContent, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
+import ItemCard from "./ItemCard";// Import the ItemCard component
 import item1 from "../assets/item1.jpg";
 import item2 from "../assets/item2.jpg";
 import item3 from "../assets/item3.jpg";
 import item4 from "../assets/item4.jpg";
 import item5 from "../assets/item5.jpg";
 import item6 from "../assets/item6.jpg";
-import item7 from "../assets/item7.jpg"; // added
-import item8 from "../assets/item8.jpg"; // added
-import item9 from "../assets/item9.jpg"; // added
-import item10 from "../assets/item10.jpg"; // added
-import item11 from "../assets/item11.jpg"; // added
-import item12 from "../assets/item12.jpg"; // added
-import "./cards.css";
+import item7 from "../assets/item7.jpg";
+import item8 from "../assets/item8.jpg";
+import item9 from "../assets/item9.jpg";
+import item10 from "../assets/item10.jpg";
+import item11 from "../assets/item11.jpg";
+import item12 from "../assets/item12.jpg";
+
 
 const items = [
-  { image: item1, title: "Shoes", price: "₹1200" },
-  { image: item2, title: "Watch", price: "₹550" },
-  { image: item3, title: "Yonex Racket", price: "₹1000" },
-  { image: item4, title: "Dual Racket", price: "₹1600" },
-  { image: item5, title: "Football", price: "₹360" },
-  { image: item6, title: "Deodorant", price: "₹210" },
-  { image: item7, title: "Bagpack", price: "₹300" }, // adjust price accordingly
-  { image: item8, title: "Wallet", price: "₹100" },
-  { image: item9, title: "Extension Board", price: "₹235" },
-  { image: item10, title: "Sneakers", price: "₹3000" },
-  { image: item11, title: "Grey Shoes", price: "₹550" },
-  { image: item12, title: "Running Shoes", price: "₹1100" },
+  { image: item1, title: "Shoes 1", price: "₹1200" },
+  { image: item2, title: "Shoes 2", price: "₹550" },
+  { image: item3, title: "Shoes 3", price: "₹1000" },
+  { image: item4, title: "Shoes 4", price: "₹1600" },
+  { image: item5, title: "Shoes 5", price: "₹360" },
+  { image: item6, title: "Shoes 6", price: "₹210" },
+  { image: item7, title: "Shoes 7", price: "₹300" },
+  { image: item8, title: "Shoes 8", price: "₹100" },
+  { image: item9, title: "Shoes 9", price: "₹235" },
+  { image: item10, title: "Shoes 10", price: "₹3000" },
+  { image: item11, title: "Shoes 11", price: "₹550" },
+  { image: item12, title: "Shoes 12", price: "₹1100" },
 ];
 
 function ItemCards() {
   return (
-    <div className="item-cards-container">
+    <Grid container spacing={5} sx={{ padding: '40px', gap: 9 }}>
       {items.map((item, index) => (
-        <Card key={index} variant="standard" className="item-card">
-          <img src={item.image} alt={item.title} className="item-image" />
-          <CardContent className="item-content">
-            <Typography className="typo1" variant="h6" component="div">
-              {item.title}
-            </Typography>
-            <Typography className="typo2"variant="body2" color="textSecondary">
-              {item.price}
-            </Typography>
-          </CardContent>
-        </Card>
+        <ItemCard
+          key={index}
+          itemName={item.title}
+          price={item.price}
+          imageUrl={item.image}
+        />
       ))}
-    </div>
+    </Grid>
   );
 }
 
