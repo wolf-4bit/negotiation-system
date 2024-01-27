@@ -1,44 +1,43 @@
+/* Carousel.css */
+
 .carousel-container {
-    text-align: center;
-  }
+  text-align: center;
+}
+
+.slider-container {
+  position: relative;
   
-  .slider-container {
-    position: relative;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    max-width: 100%;
-    overflow: hidden;
-  }
+  margin-bottom: 2.5rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slider-image {
   
-  .slider-image {
-    border-radius: 1rem;
-    width: 35%;
-    height: auto;
-    max-height: 40vh;
-    margin: 0 auto;
-  }
-  
+  width: 100%; /* Updated to fit the width of the container */
+  height: auto;
+  max-height: 50vh;
+  margin: 0 auto;
+}
+
+.arrow-button {
+  display: none;
+  position: absolute;
+  top: 45%;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.arrow-button:focus {
+  outline: none;
+}
+
+/* Responsive adjustments for portrait view */
+@media screen and (orientation: portrait) {
   .arrow-button {
-    position: absolute;
-    top: 45%;
-    font-size: 2rem;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    background: #4B0082;
-    
+    display: block; /* Show arrow buttons in portrait mode */
   }
-  
-  
-  .arrow-button:focus {
-    outline: none;
-  }
-  
-  /* Responsive adjustments for portrait view */
-  @media screen and (orientation: portrait) {
-    
-    .slider-image {
-      width: 100%;
-    }
-  }
-  
+}

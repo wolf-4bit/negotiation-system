@@ -57,7 +57,6 @@ const Carousel = () => {
         <button
           className="arrow-button"
           id="arrow-button-left"
-          style={{ left: `calc(50% - ${imageWidth / 2 + 10}px)` }}
           onClick={prevSlide}
         >
           <KeyboardArrowLeftIcon />
@@ -65,7 +64,6 @@ const Carousel = () => {
         <button
           className="arrow-button"
           id="arrow-button-right"
-          style={{ right: `calc(50% - ${imageWidth / 2 + 10}px)` }}
           onClick={nextSlide}
         >
           <KeyboardArrowRightIcon />
