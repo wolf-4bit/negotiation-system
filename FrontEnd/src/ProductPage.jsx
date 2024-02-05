@@ -1,24 +1,30 @@
 // ProductPage.jsx
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Card, CardContent, Typography, Button } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import productImage from "./assets/productImage.jpg";
 import Navbar from "./HomepageComponents/appbar";
 import AdditionalBar from "./HomepageComponents/additionalBar";
+import ChatbotUI from "./Chatbot";
 
 const ProductPage = () => {
+  const [showChatbot, setShowChatbot] = useState(false);
   const stars = 4;
   const reviews = [
     { id: 1, user: "User1", comment: "Great product!", rating: 5 },
     { id: 2, user: "User2", comment: "Good quality shoes.", rating: 4 },
     { id: 3, user: "User3", comment: "Comfortable and stylish.", rating: 4 },
   ];
+  const handleNegotiateClick = () => {
+    setShowChatbot((prevShowChatbot) => !prevShowChatbot);
+  };
 
   return (
     <div>
+      
       <Navbar />
       <AdditionalBar />
-      <Grid container spacing={1}>
+      <Grid container spacing={1} justifyContent="center" alignItems="center">
         <Grid item xs={12} md={6}>
           <Card>
             <img
@@ -30,7 +36,7 @@ const ProductPage = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Card>
-            <CardContent sx={{marginTop:"5vh"}}>
+            <CardContent sx={{ marginTop: "5vh" }}>
               <Typography variant="h4" gutterBottom>
                 Adidas Men's Adispree 5.0 M Running Shoes
               </Typography>
@@ -40,7 +46,11 @@ const ProductPage = () => {
               </Typography>
               <div>
                 {Array.from({ length: stars }).map((_, index) => (
-                  <StarIcon key={index} color="primary" sx={{ marginTop: "1vh", color: "#663399" }} />
+                  <StarIcon
+                    key={index}
+                    color="primary"
+                    sx={{ marginTop: "1vh", color: "#663399" }}
+                  />
                 ))}
               </div>
               <Button
@@ -50,10 +60,16 @@ const ProductPage = () => {
               >
                 Add to Cart
               </Button>
-              
+
               <Button
                 variant="contained"
-                style={{ marginLeft:"1vh",marginTop: "2vh", backgroundColor: "#cccccc", color: "#333333" }}
+                style={{
+                  marginLeft: "1vh",
+                  marginTop: "2vh",
+                  backgroundColor: "#000000",
+                  color: "#FFFFFF",
+                }}
+                onClick={handleNegotiateClick}
               >
                 Negotiate
               </Button>
@@ -124,7 +140,11 @@ const ProductPage = () => {
                   <Typography variant="body1">{review.comment}</Typography>
                   <div>
                     {Array.from({ length: review.rating }).map((_, index) => (
-                      <StarIcon key={index} color="primary" sx={{ color: "#663399" }} />
+                      <StarIcon
+                        key={index}
+                        color="primary"
+                        sx={{ color: "#663399" }}
+                      />
                     ))}
                   </div>
                 </div>
@@ -133,6 +153,7 @@ const ProductPage = () => {
           </Card>
         </Grid>
       </Grid>
+      {showChatbot && <ChatbotUI/>}
     </div>
   );
 };
